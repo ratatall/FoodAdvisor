@@ -24,6 +24,8 @@ This is a simple, attractive Flutter app that helps you decide what to eat for b
   - The app randomly selects one breakfast, one lunch, and one dinner from all available options (including your custom foods).
   - The plan dialog shows the selected meals and the total calories for the day.
 
+- **Present all available options**
+  - Tap the present button to see every possible breakfast, lunch, or dinner.
 ## Screenshots
 
 - ![Screenshot 1](screenshots/screenshotAdd.png)

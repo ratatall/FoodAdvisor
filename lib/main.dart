@@ -285,6 +285,37 @@ class _FoodSuggestionPageState extends State<FoodSuggestionPage> {
     );
   }
 
+  void _showAllOptions() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('All Options'),
+        content: SizedBox(
+          width: double.maxFinite,
+          child: ListView.separated(
+            shrinkWrap: true,
+            itemCount: widget.suggestions.length,
+            separatorBuilder: (context, i) => const Divider(),
+            itemBuilder: (context, i) {
+              final food = widget.suggestions[i];
+              return ListTile(
+                title: Text(food['title'] ?? ''),
+                subtitle: Text('${food['desc'] ?? ''}\nCalories: ${food['calories'] ?? ''}'),
+                isThreeLine: true,
+              );
+            },
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Close'),
+          ),
+        ],
+      ),
+    );
+  }
+
   void _addCustomFood() async {
     String? title;
     String? desc;
@@ -352,7 +383,14 @@ class _FoodSuggestionPageState extends State<FoodSuggestionPage> {
         backgroundColor: Colors.teal,
         foregroundColor: Colors.white,
         elevation: 2,
-        actions: widget.appBarActions,
+        actions: [
+          ...widget.appBarActions,
+          IconButton(
+            icon: const Icon(Icons.list),
+            tooltip: 'Show All Options',
+            onPressed: _showAllOptions,
+          ),
+        ],
       ),
       body: Center(
         child: Padding(
